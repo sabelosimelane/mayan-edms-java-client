@@ -50,4 +50,12 @@ public class Authentication {
             throw new RuntimeException("An unexpected error occurred during authentication: " + ex.getMessage());
         }
     }
+
+    public HttpHeaders getAuthHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        headers.setBearerAuth(authenticate());
+        return headers;
+    }
 }
